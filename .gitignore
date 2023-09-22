@@ -36,3 +36,4 @@ dist/
 nbdist/
 .nb-gradle/
 /proxecto1/target/
+/OlaMundo/target/
