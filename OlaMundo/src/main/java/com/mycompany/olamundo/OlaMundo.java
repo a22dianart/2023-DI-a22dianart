@@ -3,6 +3,8 @@
  */
 package com.mycompany.olamundo;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
 import javax.swing.*;
 
 /**
@@ -14,7 +16,7 @@ public class OlaMundo {
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                MainFrame principal = new MainFrame();
+                Exercicio1 principal = new Exercicio1();
 
             }
         });
