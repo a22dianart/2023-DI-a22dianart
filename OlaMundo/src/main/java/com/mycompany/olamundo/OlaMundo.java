@@ -16,7 +16,7 @@ public class OlaMundo {
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                Exercicio2_3 principal = new Exercicio2_3();
+                Exercicio3_2 principal = new Exercicio3_2();
 
             }
         });
