@@ -6,11 +6,11 @@ package com.mycompany.olamundo;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
+import static java.awt.Color.WHITE;
+
 
 /**
  *
@@ -25,7 +25,23 @@ public class Exercicio2_4 extends JFrame {
         JButton esqButton = new JButton("Esq");
         JButton derButton = new JButton("Der");
         JLabel etiqueta = new JLabel();
-        // frame.getContentPane();
+        
+        JPanel contentPane = new JPanel();
+        contentPane.setBackground(Color.WHITE);
+        setContentPane(contentPane);
+        
+        contentPane.addMouseListener(new MouseAdapter() { //usamos o MouseAdapter porque queremos solo ao facer click
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(contentPane.getBackground()==Color.WHITE){ //IMPORTANTE!!
+                contentPane.setBackground(Color.CYAN);}
+                else{
+                    contentPane.setBackground(Color.WHITE);
+                }
+            }
+        });
+        
+        
         MouseListener ml = new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent me) {
@@ -66,7 +82,6 @@ public class Exercicio2_4 extends JFrame {
         add(derButton);
         add(etiqueta);
 
-        getContentPane().setBackground(Color.pink);
         setSize(600, 500);
         setVisible(true);
     }

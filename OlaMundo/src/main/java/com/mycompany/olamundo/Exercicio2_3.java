@@ -63,7 +63,7 @@ public class Exercicio2_3 extends JFrame {
         add(derButton);
         add(etiqueta);
 
-        getContentPane().setBackground(Color.pink);
+        getContentPane().setBackground(Color.PINK);
         setSize(600, 500);
         setVisible(true);
     }
