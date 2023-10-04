@@ -15,7 +15,7 @@ import javax.swing.JTextField;
  *
  * @author diana
  */
-public class Exercicio3_5 extends JFrame{
+public class Exercicio3_5 extends JFrame {
 
     public Exercicio3_5() {
         setLayout(new BorderLayout());
@@ -23,20 +23,21 @@ public class Exercicio3_5 extends JFrame{
         JTextArea allText = new JTextArea();
         JTextField userText = new JTextField();//JTextField xa que o outro non ten para engadir o ActionListener
         allText.setEditable(false);//non editable
-        
+
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    allText.append(" "+userText.getText());
-                    userText.setText("");
+                allText.append(" " + userText.getText());
+                userText.setSelectionStart(0);
+                userText.setSelectionEnd(userText.getText().length());
             }
         };
         userText.addActionListener(al);
-        add(allText, BorderLayout.PAGE_START);
+        add(allText, BorderLayout.CENTER);
         add(userText, BorderLayout.PAGE_END);
         setSize(400, 500);
         setVisible(true);
-        
+
     }
-    
+
 }
