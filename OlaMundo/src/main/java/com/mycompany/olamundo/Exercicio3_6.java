@@ -34,6 +34,7 @@ public class Exercicio3_6 extends JFrame {
         printNumberBtn.setActionCommand("print numbers");
 
         //DATE
+        //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         DateFormat dateFormat = DateFormat.getDateInstance();
         JFormattedTextField dateText = new JFormattedTextField(dateFormat);
         dateText.setColumns(20);
