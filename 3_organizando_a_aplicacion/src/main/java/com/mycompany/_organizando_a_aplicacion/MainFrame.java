@@ -26,13 +26,21 @@ public class MainFrame extends JFrame {
 
         TextPanel textPanel = new TextPanel();
         FormPanel formPanel = new FormPanel();
-
         ToolBar toolbar = new ToolBar();
-        toolbar.setTextListener(new StringListener() {
+
+        toolbar.setStringListener(new StringListener() {
             @Override
-            public void textEmitted(String text) {
-                textPanel.appendText(text);
+            public void textEmitted(StringEvent se) {
+                textPanel.appendText(se.getText());
             }
+        });
+
+        formPanel.setFormListener(new FormListener() {
+            @Override
+            public void textEmitted(FormEvent e) {
+                textPanel.appendText(e.getText());
+            }
+
         });
 
         aceptarButton = new JButton("Aceptar");
@@ -57,8 +65,7 @@ public class MainFrame extends JFrame {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        setVisible(
-                true);
+        setVisible(true);
     }
 
 }

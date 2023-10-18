@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -20,6 +22,8 @@ import javax.swing.border.Border;
  * @author a22dianart
  */
 public class FormPanel extends JPanel {
+
+    private FormListener formListener;
 
     public FormPanel() {
         Dimension dim = getPreferredSize();
@@ -38,6 +42,23 @@ public class FormPanel extends JPanel {
         JLabel occuLbl = new JLabel("Occupation: ");
         JButton okBtn = new JButton("OK");
 
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JButton clickedButton = (JButton) e.getSource();
+                if (clickedButton == okBtn) {
+                    if (formListener != null) {
+                        String name = nameTxt.getText();
+                        String occu = occuTxt.getText();
+                        String text = name + ": " + occu + "\n";
+                        FormEvent se = new FormEvent(this, text);
+                        formListener.textEmitted(se);
+                    }
+                }
+            }
+        };
+        okBtn.addActionListener(al);
+
         GridBagConstraints gbc = new GridBagConstraints();
         ////First row////
 
@@ -49,12 +70,14 @@ public class FormPanel extends JPanel {
         gbc.fill = GridBagConstraints.NONE; //que ocupen o necesario
         gbc.anchor = GridBagConstraints.LINE_END;
         gbc.insets = new Insets(0, 0, 0, 5);
+
         add(nameLbl, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.LINE_START;
         gbc.insets = new Insets(0, 0, 0, 0);
+
         add(nameTxt, gbc);
 
         ////Second Row/////
@@ -62,12 +85,14 @@ public class FormPanel extends JPanel {
         gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.LINE_END;
         gbc.insets = new Insets(0, 0, 0, 5);
+
         add(occuLbl, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.LINE_START;
         gbc.insets = new Insets(0, 0, 0, 0);
+
         add(occuTxt, gbc);
 
         //Last Row///
@@ -76,7 +101,12 @@ public class FormPanel extends JPanel {
 
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;
         gbc.gridy = 2;
+
         add(okBtn, gbc);
+    }
+
+    public void setFormListener(FormListener formListener) {
+        this.formListener = formListener;
     }
 
 }

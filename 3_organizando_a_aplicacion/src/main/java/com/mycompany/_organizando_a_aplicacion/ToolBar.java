@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  */
 public class ToolBar extends JPanel {
 
-    private StringListener textListener;
+    private StringListener stringListener;
 
     public ToolBar() {
 
@@ -31,12 +31,14 @@ public class ToolBar extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 JButton clickedButton = (JButton) e.getSource();
                 if (clickedButton == helloBtn) {
-                    if (textListener != null) {
-                        textListener.textEmitted("Hello\n");
+                    if (stringListener != null) {
+                        StringEvent se = new StringEvent(this, "Hello\n");
+                        stringListener.textEmitted(se);
                     }
                 } else if (clickedButton == byeBtn) {
-                    if (textListener != null) {
-                        textListener.textEmitted("Goodbye\n");
+                    if (stringListener != null) {
+                        StringEvent se = new StringEvent(this, "Goodbye\n");
+                        stringListener.textEmitted(se);
                     }
                 }
             }
@@ -47,8 +49,8 @@ public class ToolBar extends JPanel {
         add(byeBtn);
     }
 
-    public void setTextListener(StringListener textListener) {
-        this.textListener = textListener;
+    public void setStringListener(StringListener stringListener) {
+        this.stringListener = stringListener;
     }
 
 }
