@@ -5,6 +5,7 @@
 package Listas;
 
 import java.awt.BorderLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
@@ -23,6 +24,19 @@ public class FramePrincipal extends JFrame {
 
         CenterPanel cp = new CenterPanel();
         SouthPanel sp = new SouthPanel();
+
+        sp.setEraseListener(new EraseListener() {
+            @Override
+            public void actionEmitted() {
+                int index = cp.getSelectedItem();
+                DefaultListModel modelo = cp.getModelo();
+                if (index != -1) {
+                    modelo.remove(index);
+                    cp.getListaNomes().setSelectedIndex(0); //Facer o de borrar no CenterPanel
+                }
+            }
+        });
+
         add(cp, BorderLayout.CENTER);
         add(sp, BorderLayout.SOUTH);
 

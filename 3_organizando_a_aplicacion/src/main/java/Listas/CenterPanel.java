@@ -16,14 +16,17 @@ import javax.swing.ListSelectionModel;
  */
 public class CenterPanel extends JPanel {
 
+    private JList listaNomes;
+    private DefaultListModel modelo;
+
     public CenterPanel() {
         BorderLayout bl = new BorderLayout();
         bl.setHgap(0);
         bl.setVgap(0);
         setLayout(bl);
 
-        JList listaNomes = new JList();
-        DefaultListModel modelo = new DefaultListModel();
+        listaNomes = new JList();
+        modelo = new DefaultListModel();
         modelo.addElement(new Dato(0, "Ana"));
         modelo.addElement(new Dato(1, "Erea"));
         modelo.addElement(new Dato(2, "Navia"));
@@ -33,7 +36,24 @@ public class CenterPanel extends JPanel {
         listaNomes.setSelectedIndex(0); //para selecccionar o primeiro
 
         add(listaNomes);
+        System.out.println(listaNomes.getSelectedIndex());
 
+    }
+
+    public JList getListaNomes() {
+        return listaNomes;
+    }
+
+    public void setListaNomes(JList listaNomes) {
+        this.listaNomes = listaNomes;
+    }
+
+    public DefaultListModel getModelo() {
+        return modelo;
+    }
+
+    public int getSelectedItem() {
+        return this.listaNomes.getSelectedIndex();
     }
 
 }
