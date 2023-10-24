@@ -4,10 +4,13 @@
  */
 package Listas;
 
+import java.util.EventListener;
+
 /**
  *
  * @author a22dianart
  */
-public class AddListener {
+public interface AddListener extends EventListener {
 
+    public void actionEmitted(String texto);
 }

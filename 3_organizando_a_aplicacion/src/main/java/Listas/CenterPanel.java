@@ -27,9 +27,9 @@ public class CenterPanel extends JPanel {
 
         listaNomes = new JList();
         modelo = new DefaultListModel();
-        modelo.addElement(new Dato(0, "Ana"));
-        modelo.addElement(new Dato(1, "Erea"));
-        modelo.addElement(new Dato(2, "Navia"));
+        modelo.addElement("Ana");
+        modelo.addElement("Erea");
+        modelo.addElement("Navia");
         listaNomes.setModel(modelo);
 
         listaNomes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); //só selecccione un de cada vez

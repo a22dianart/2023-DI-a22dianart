@@ -26,14 +26,37 @@ public class FramePrincipal extends JFrame {
         SouthPanel sp = new SouthPanel();
 
         sp.setEraseListener(new EraseListener() {
+            boolean ultimo = false;
+
             @Override
             public void actionEmitted() {
                 int index = cp.getSelectedItem();
                 DefaultListModel modelo = cp.getModelo();
-                if (index != -1) {
+                if (modelo.getSize() == 1) {
                     modelo.remove(index);
-                    cp.getListaNomes().setSelectedIndex(0); //Facer o de borrar no CenterPanel
+                    sp.getBorrarBtn().setEnabled(false);
+                } else {
+                    if (modelo.getSize() - 1 == index) {
+                        modelo.remove(index);
+                        cp.getListaNomes().setSelectedIndex(modelo.getSize() - 1);
+                    } else {
+                        modelo.remove(index);
+                        cp.getListaNomes().setSelectedIndex(0);
+
+                    }
                 }
+            }
+        });
+
+        sp.setAddListener(new AddListener() {
+            boolean ultimo = false;
+
+            @Override
+            public void actionEmitted(String texto) {
+                int index = cp.getSelectedItem();
+                DefaultListModel modelo = cp.getModelo();
+                modelo.add(modelo.getSize(), texto);
+                sp.getBorrarBtn().setEnabled(true);
             }
         });
 
