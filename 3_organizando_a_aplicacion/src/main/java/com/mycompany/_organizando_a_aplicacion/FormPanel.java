@@ -11,10 +11,18 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.Border;
 
 /**
@@ -41,6 +49,38 @@ public class FormPanel extends JPanel {
         JTextField occuTxt = new JTextField(10);
         JLabel occuLbl = new JLabel("Occupation: ");
         JButton okBtn = new JButton("OK");
+        JLabel ageLbl = new JLabel("Age:");
+        JLabel emploLbl = new JLabel("Employment:");
+        JLabel usLbl = new JLabel("US Citizen:");
+        JLabel taxLbl = new JLabel("Tax ID:");
+        JLabel genderLbl = new JLabel("Gender:");
+
+        //Lista
+        JList listaIdades = new JList();
+        DefaultListModel modelo = new DefaultListModel();
+        modelo.addElement(new AgeCategory(0, "Under 18"));
+        modelo.addElement(new AgeCategory(1, "18 to 25"));
+        modelo.addElement(new AgeCategory(2, "65 or over"));
+        listaIdades.setModel(modelo);
+        listaIdades.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); //só selecccione un de cada vez
+        listaIdades.setSelectedIndex(1); //para selecccionar o primeiro
+        //Combo
+        String comboBoxItems[] = {"employed", "self-employed", "unemployed"};
+        JComboBox cb = new JComboBox(comboBoxItems);
+        cb.setSelectedIndex(0);
+        cb.setEditable(false);
+        //Checkbox
+        JCheckBox usChk = new JCheckBox();
+        //TextField
+        JTextField taxTxt = new JTextField();
+        //RadioButtons
+        JRadioButton maleBtn = new JRadioButton("male");
+
+        JRadioButton femaleBtn = new JRadioButton("female");
+
+        ButtonGroup group = new ButtonGroup();
+        group.add(maleBtn);
+        group.add(femaleBtn);
 
         ActionListener al = new ActionListener() {
             @Override
@@ -50,7 +90,7 @@ public class FormPanel extends JPanel {
                     if (formListener != null) {
                         String name = nameTxt.getText();
                         String occu = occuTxt.getText();
-                        String text = name + ": " + occu + "\n";
+                        String text = name + ": " + occu + " : " + listaIdades.getSelectedIndex() + " : " + cb.getSelectedItem() + "\n";
                         FormEvent se = new FormEvent(this, text);
                         formListener.textEmitted(se);
                     }
@@ -94,13 +134,82 @@ public class FormPanel extends JPanel {
         gbc.insets = new Insets(0, 0, 0, 0);
 
         add(occuTxt, gbc);
+        //Third Row
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.FIRST_LINE_END;
+        gbc.insets = new Insets(0, 0, 0, 5);
+        add(ageLbl, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        add(listaIdades, gbc);
+
+        //Fourth Row
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.FIRST_LINE_END;
+        gbc.insets = new Insets(0, 0, 0, 5);
+        add(emploLbl, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        add(cb, gbc);
+        //5 row
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.FIRST_LINE_END;
+        gbc.insets = new Insets(0, 0, 0, 5);
+        add(usLbl, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        add(usChk, gbc);
+        //6 row
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.anchor = GridBagConstraints.FIRST_LINE_END;
+        gbc.insets = new Insets(0, 0, 0, 5);
+        add(taxLbl, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 5;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        add(taxTxt, gbc);
+
+        //7 row
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        gbc.anchor = GridBagConstraints.FIRST_LINE_END;
+        gbc.insets = new Insets(0, 0, 0, 5);
+        add(genderLbl, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 6;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        add(maleBtn, gbc);
+
+        //8 row
+        gbc.gridx = 1;
+        gbc.gridy = 7;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        add(femaleBtn, gbc);
 
         //Last Row///
         gbc.weightx = 1;
         gbc.weighty = 2.0;
 
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-        gbc.gridy = 2;
+        gbc.gridy = 8;
 
         add(okBtn, gbc);
     }
