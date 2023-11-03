@@ -10,6 +10,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
@@ -68,19 +70,36 @@ public class FormPanel extends JPanel {
         String comboBoxItems[] = {"employed", "self-employed", "unemployed"};
         JComboBox cb = new JComboBox(comboBoxItems);
         cb.setSelectedIndex(0);
-        cb.setEditable(false);
+
         //Checkbox
         JCheckBox usChk = new JCheckBox();
         //TextField
         JTextField taxTxt = new JTextField();
+        taxTxt.setPreferredSize(new Dimension(100, 20));
+
+        usChk.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    taxLbl.setEnabled(true);
+                    taxTxt.setEnabled(true);
+                } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                    taxLbl.setEnabled(false);
+                    taxTxt.setEnabled(false);
+                }
+            }
+        });
+
         //RadioButtons
         JRadioButton maleBtn = new JRadioButton("male");
-
+        maleBtn.setActionCommand("male"); //para que nos devolva o texto
         JRadioButton femaleBtn = new JRadioButton("female");
+        femaleBtn.setActionCommand("female");
 
         ButtonGroup group = new ButtonGroup();
         group.add(maleBtn);
         group.add(femaleBtn);
+        maleBtn.setSelected(true); //seleccionamos o male pro defecto
 
         ActionListener al = new ActionListener() {
             @Override
@@ -90,7 +109,7 @@ public class FormPanel extends JPanel {
                     if (formListener != null) {
                         String name = nameTxt.getText();
                         String occu = occuTxt.getText();
-                        String text = name + ": " + occu + " : " + listaIdades.getSelectedIndex() + " : " + cb.getSelectedItem() + "\n";
+                        String text = name + ": " + occu + " : " + listaIdades.getSelectedIndex() + " : " + cb.getSelectedItem() + " : " + group.getSelection().getActionCommand() + "\n";
                         FormEvent se = new FormEvent(this, text);
                         formListener.textEmitted(se);
                     }
