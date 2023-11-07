@@ -92,7 +92,8 @@ public class MainFrame extends JFrame {
 
         JMenu winMenu = new JMenu("Window");
         JMenu showMenu = new JMenu("Show");
-        JCheckBoxMenuItem personItem = new JCheckBoxMenuItem("Peson Form");
+        JCheckBoxMenuItem personItem = new JCheckBoxMenuItem("Person Form");
+        personItem.setSelected(true);
         showMenu.add(personItem);
         winMenu.add(showMenu);
 
