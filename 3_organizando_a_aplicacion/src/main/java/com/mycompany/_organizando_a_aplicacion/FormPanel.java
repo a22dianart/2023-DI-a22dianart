@@ -109,7 +109,13 @@ public class FormPanel extends JPanel {
                     if (formListener != null) {
                         String name = nameTxt.getText();
                         String occu = occuTxt.getText();
-                        String text = name + ": " + occu + " : " + listaIdades.getSelectedIndex() + " : " + cb.getSelectedItem() + " : " + group.getSelection().getActionCommand() + "\n";
+                        String tax = taxTxt.getText();
+                        String text;
+                        if (taxLbl.isEnabled()) {
+                            text = name + ": " + occu + " : " + listaIdades.getSelectedIndex() + " : " + cb.getSelectedItem() + " : " + tax + " : " + group.getSelection().getActionCommand() + "\n";
+                        } else {
+                            text = name + ": " + occu + " : " + listaIdades.getSelectedIndex() + " : " + cb.getSelectedItem() + " : " + group.getSelection().getActionCommand() + "\n";
+                        }
                         FormEvent se = new FormEvent(this, text);
                         formListener.textEmitted(se);
                     }

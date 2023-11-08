@@ -8,6 +8,8 @@ import com.mycompany._organizando_a_aplicacion.FormEvent;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.net.URL;
 import javax.swing.ButtonGroup;
@@ -19,7 +21,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 import javax.swing.WindowConstants;
 
@@ -29,17 +33,21 @@ import javax.swing.WindowConstants;
  */
 public class Principal extends JFrame {
 
+    JTextArea textArea;
+
     public Principal() {
 
         super("Aplicación");
 
         setLayout(new BorderLayout());
 
-        TextoPanel textPanel = new TextoPanel();
-
         setJMenuBar(createMenuBar()); //O MENU BAR
 
-        add(textPanel, BorderLayout.CENTER);
+        textArea = new JTextArea();
+        setLayout(new BorderLayout());
+        add(new JScrollPane(textArea), BorderLayout.CENTER);
+
+        add(textArea, BorderLayout.CENTER);
 
         setSize(600, 500);
 
@@ -95,14 +103,58 @@ public class Principal extends JFrame {
         menuBar.add(casaMenu);
         menuBar.add(extrasMenu);
 
-        ActionListener al = new ActionListener() {
+        cocinhaItem.addItemListener(new ItemListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    textArea.append("Cociña. Estado activado \n");
+                    textArea.append("Baño. Estado desactivado \n");
+                } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                    textArea.append("Cociña. Estado desactivado \n");
+                    textArea.append("Baño. Estado activado \n");
+                }
             }
-        };
-        cocinhaItem.addActionListener(al);
-        banhoItem.addActionListener(al);
+        });
+        salonMenu.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    textArea.append("Salón. Estado activado \n");
+                } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                    textArea.append("Salón. Estado desactivado \n");
+                }
+            }
+        });
+
+        habitacion1item.addActionListener(new ActionListener() {
+            int numVeces = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                numVeces++;
+                textArea.append("Pulsaches na habitación 1 " + numVeces + " veces \n");
+            }
+        });
+
+        garaxeItem.addActionListener(new ActionListener() {
+            int numVeces = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                numVeces++;
+                textArea.append("Pulsaches no garaxe " + numVeces + " veces \n");
+            }
+        });
+
+        trasteiroItem.addActionListener(new ActionListener() {
+            int numVeces = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                numVeces++;
+                textArea.append("Pulsaches no trasteiro " + numVeces + " veces \n");
+            }
+        });
 
         return menuBar;
     }
