@@ -99,15 +99,58 @@ public class MainFrame extends JFrame {
 
         menuBar.add(fileMenu);
         menuBar.add(winMenu);
+        JFrame jf = this;
 
         //Listeners
         ActionListener exitListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                int confirmado = JOptionPane.showConfirmDialog(jf, "Seguro que queres saír?", "CONFIRMACIÓN", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                switch (confirmado) {
+                    case JOptionPane.YES_OPTION:
+                        System.exit(0); //SO SE SAE SE DI QUE SI
+                        break;
+                    case JOptionPane.NO_OPTION:
+                        break;
+                    case JOptionPane.CLOSED_OPTION:
+                        break;
+                    default:
+                        break;
+                }
             }
         };
+
+        ActionListener exListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fc = new JFileChooser();
+                fc.addChoosableFileFilter(new PersonFileFilter());
+                int returnVal = fc.showSaveDialog(jf);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    System.out.println(fc.getSelectedFile());
+                } else {
+                    System.out.println("Open command cancelled by user.");
+                }
+            }
+        };
+        ActionListener imListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fc = new JFileChooser();
+                fc.addChoosableFileFilter(new PersonFileFilter());
+                int returnVal = fc.showOpenDialog(jf);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    System.out.println(fc.getSelectedFile());
+                } else {
+                    System.out.println("Open command cancelled by user.");
+                }
+            }
+        };
+
         exitItem.addActionListener(exitListener);
+        exItem.addActionListener(exListener);
+        imItem.addActionListener(imListener);
+
         personItem.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -118,6 +161,7 @@ public class MainFrame extends JFrame {
                 }
             }
         });
+
         return menuBar;
     }
 

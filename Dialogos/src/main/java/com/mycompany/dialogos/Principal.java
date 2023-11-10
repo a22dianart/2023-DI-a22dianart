@@ -82,15 +82,38 @@ public class Principal extends JFrame {
                 System.out.println(name); //imprimo por consola
 
                 //con opcions
-                int opcion = JOptionPane.showInputDialog(null, "Método con 7 parámetros", "Título del diálogo", createIcon("/casinha.png");,JOptionPane.INFORMATION_MESSAGE, new Object[]{"Opción 1", "Opción 2", "Opción 3", "Opción 4"}
-
-
-
-
-        ,
-                        "Opción 2"); //<----CONTINUAR   AQUI
+                Object opcion = JOptionPane.showInputDialog(jf, "Método con 7 parámetros", "Título del diálogo", JOptionPane.INFORMATION_MESSAGE, createIcon("/casinha.png"), new Object[]{"Opción 1", "Opción 2", "Opción 3", "Opción 4"}, "Opción 1");
+                if (opcion.equals("Opción 1")) {
+                    System.out.println("Seleccionouse a opción 1");
+                } else if (opcion.equals("Opción 2")) {
+                    System.out.println("Seleccionouse a opción 2");
+                } else if (opcion.equals("Opción 3")) {
+                    System.out.println("Seleccionouse a opción 3");
+                }
             }
         });
+        optionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                int selection = JOptionPane.showOptionDialog(jf, "Select one:", "Let's play a game!",
+                        0, 3, null, new Object[]{"Opcion 1", "Opcion 2", "Opcion 3"}, "Opcion 2");
+                switch (selection) { //este ten que ser cos numeros das opcions. NON VALE COMO O OUTRO
+                    case 0:
+                        System.out.println("Seleccionouse a opción 1");
+                        break;
+                    case 1:
+                        System.out.println("Seleccionouse a opción 2");
+                        break;
+                    case 2:
+                        System.out.println("Seleccionouse a opción 3");
+                        break;
+                    default:
+                        System.out.println("Saiuse da ventá");
+                        break;
+                }
+            }
+        });
+
         setSize(
                 600, 500);
 
