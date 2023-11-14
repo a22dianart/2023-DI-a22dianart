@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany._organizando_a_aplicacion;
+package com.mycompany.gui;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -22,9 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.Border;
@@ -113,16 +111,7 @@ public class FormPanel extends JPanel {
                 JButton clickedButton = (JButton) e.getSource();
                 if (clickedButton == okBtn) {
                     if (formListener != null) {
-                        String name = nameTxt.getText();
-                        String occu = occuTxt.getText();
-                        String tax = taxTxt.getText();
-                        String text;
-                        if (taxLbl.isEnabled()) {
-                            text = name + ": " + occu + " : " + listaIdades.getSelectedIndex() + " : " + cb.getSelectedItem() + " : " + tax + " : " + group.getSelection().getActionCommand() + "\n";
-                        } else {
-                            text = name + ": " + occu + " : " + listaIdades.getSelectedIndex() + " : " + cb.getSelectedItem() + " : " + group.getSelection().getActionCommand() + "\n";
-                        }
-                        FormEvent se = new FormEvent(this, text);
+                        FormEvent se = new FormEvent(this, nameTxt.getText(), occuTxt.getText(), listaIdades.getName(), cb.getSelectedItem().toString(), taxTxt.getText(), group.getSelection().getActionCommand());
                         formListener.textEmitted(se);
                     }
                 }
@@ -247,6 +236,39 @@ public class FormPanel extends JPanel {
 
     public void setFormListener(FormListener formListener) {
         this.formListener = formListener;
+    }
+
+}
+
+class AgeCategory { //distinta AgeCategory que a do modelo
+
+    private int id;
+    private String text;
+
+    public AgeCategory(int id, String text) {
+        this.id = id;
+        this.text = text;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    @Override
+    public String toString() {
+        return text;
     }
 
 }
