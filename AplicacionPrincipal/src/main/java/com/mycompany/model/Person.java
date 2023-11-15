@@ -29,6 +29,7 @@ public class Person {
         this.usCitizen = usCitizen;
         this.gender = gender;
         count++; //outra instancia creada
+        this.id = count;
 
     }
 

@@ -65,7 +65,7 @@ public class FormPanel extends JPanel {
         modelo.addElement(new AgeCategory(2, "65 or over"));
         listaIdades.setModel(modelo);
         listaIdades.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); //só selecccione un de cada vez
-        listaIdades.setSelectedIndex(1); //para selecccionar o primeiro
+        listaIdades.setSelectedIndex(1); //para selecccionar o segundo
         JScrollPane jsp = new JScrollPane(listaIdades);
         jsp.setPreferredSize(new Dimension(115, 50));
         //Combo
@@ -77,6 +77,7 @@ public class FormPanel extends JPanel {
 
         //Checkbox
         JCheckBox usChk = new JCheckBox();
+        usChk.setSelected(true);
         //TextField
         JTextField taxTxt = new JTextField();
         taxTxt.setPreferredSize(new Dimension(115, 20));
@@ -115,6 +116,14 @@ public class FormPanel extends JPanel {
                         formListener.textEmitted(se);
                     }
                 }
+                nameTxt.setText("");
+                occuTxt.setText("");
+                listaIdades.setSelectedIndex(1);
+                cb.setSelectedIndex(0);
+                usChk.setSelected(true);
+                taxTxt.setText("");
+                maleBtn.setSelected(true);
+
             }
         };
         okBtn.addActionListener(al);
