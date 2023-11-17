@@ -4,12 +4,15 @@
  */
 package com.mycompany.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author a22dianart
  */
-public class Person {
+public class Person implements Serializable {
 
+    private static final long serialVersionUID = 1234L;
     private static int count = 0; //para contar o numero de instancias da clase
     private int id;
     private String name;

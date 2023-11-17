@@ -12,7 +12,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -26,6 +29,7 @@ public class MainFrame extends JFrame {
     private FormPanel formPanel;
     private List<Person> personList;
     private Controller controller;
+    private TablePanel tablePanel;
 
     public MainFrame() {
 
@@ -34,7 +38,7 @@ public class MainFrame extends JFrame {
         setLayout(new BorderLayout());
 
         this.controller = new Controller();
-        TablePanel tablePanel = new TablePanel();
+        tablePanel = new TablePanel();
 
         tablePanel.setData(controller.getPeople());
         formPanel = new FormPanel(); //antes que o menu bar
@@ -130,26 +134,41 @@ public class MainFrame extends JFrame {
             }
         };
 
-        ActionListener exListener = new ActionListener() {
+        ActionListener exListener = new ActionListener() { //gardar
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fc = new JFileChooser();
                 fc.addChoosableFileFilter(new PersonFileFilter());
                 int returnVal = fc.showSaveDialog(jf);
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+                    try {
+                        controller.saveToFile(fc.getSelectedFile());
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(jf, "Erro intentando gardar o arquivo", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+
                     System.out.println(fc.getSelectedFile());
+
                 } else {
                     System.out.println("Open command cancelled by user.");
                 }
             }
         };
-        ActionListener imListener = new ActionListener() {
+        ActionListener imListener = new ActionListener() { //cargar
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fc = new JFileChooser();
                 fc.addChoosableFileFilter(new PersonFileFilter());
                 int returnVal = fc.showOpenDialog(jf);
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        controller.loadFromFile(fc.getSelectedFile());
+                        tablePanel.refresh();
+                    } catch (IOException io) {
+                        JOptionPane.showMessageDialog(jf, "Erro intentando importar o arquivo", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+
                     System.out.println(fc.getSelectedFile());
                 } else {
                     System.out.println("Open command cancelled by user.");

@@ -4,11 +4,13 @@
  */
 package com.mycompany.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author a22dianart
  */
-public enum EmploymentCategory {
+public enum EmploymentCategory implements Serializable {
     EMPLOYED, SELFEMPLOYED, UNEMPLOYED, OTHER
 
 }

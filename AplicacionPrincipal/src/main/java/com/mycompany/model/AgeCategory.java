@@ -4,10 +4,12 @@
  */
 package com.mycompany.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author a22dianart
  */
-public enum AgeCategory {
+public enum AgeCategory implements Serializable {
     CHILD, ADULT, SENIOR
 }

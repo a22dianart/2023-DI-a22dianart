@@ -4,11 +4,13 @@
  */
 package com.mycompany.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author a22dianart
  */
-public enum Gender {
+public enum Gender implements Serializable {
     MALE, FEMALE
 
 }
