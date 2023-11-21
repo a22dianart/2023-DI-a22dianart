@@ -74,4 +74,10 @@ public class PersonTableModel extends AbstractTableModel {
             return columnNames[column];
         }
     }
+
+    public void removePerson(int row) {
+        personList.remove(row);
+        fireTableRowsDeleted(row, row);
+    }
+
 }

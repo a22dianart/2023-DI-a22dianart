@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -26,11 +27,28 @@ public class TablePanel extends JPanel {
 
     public TablePanel() {
         personTableModel = new PersonTableModel();
-        JPopupMenu popup = new JPopupMenu("Borrar fila");
-        table = new JTable(personTableModel);
+        JPopupMenu popup = new JPopupMenu();
+        JMenuItem removeItem = new JMenuItem("Borrar fila");
+
+        popup.add(removeItem);
+
+        removeItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                int row = … // engadir o código para obter a fila seleccionada
+                if (personTableListener != null) {
+                    personTableListener.rowDeleted(row);
+// para que visualmente se actualicen os datos
+                    personTableModel.fireTableRowsDeleted(row, row);
+                }
+            }
+        });
+
+        JTable table = new JTable(personTableModel);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 maybeShowPopup(e);
+
             }
 
             public void mouseReleased(MouseEvent e) {
@@ -39,14 +57,23 @@ public class TablePanel extends JPanel {
 
             private void maybeShowPopup(MouseEvent e) {
                 if (e.isPopupTrigger()) {
+                    JTable source = (JTable) e.getSource();
+                    int row = source.rowAtPoint(e.getPoint());
+                    int column = source.columnAtPoint(e.getPoint());
+
+                    if (!source.isRowSelected(row)) {
+                        source.changeSelection(row, column, false, false);
+                    }
+
                     popup.show(e.getComponent(), e.getX(), e.getY());
                 }
             }
         });
+
         setLayout(new BorderLayout());
-        JMenuItem removeItem = new JMenuItem("borrar fila");
 
         add(new JScrollPane(table), BorderLayout.CENTER);
+
     }
 
     public void setData(List<Person> personList) {
@@ -56,5 +83,9 @@ public class TablePanel extends JPanel {
 
     public void refresh() {
         personTableModel.fireTableDataChanged();
+    }
+
+    public void setPersonTableListener() {
+
     }
 }
