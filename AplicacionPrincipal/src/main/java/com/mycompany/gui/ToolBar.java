@@ -7,50 +7,45 @@ package com.mycompany.gui;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.JToolBar;
 
 /**
  *
  * @author a22dianart
  */
-public class ToolBar extends JPanel {
+public class ToolBar extends JToolBar {
 
     private StringListener stringListener;
 
     public ToolBar() {
 
-        FlowLayout fl = new FlowLayout(FlowLayout.LEFT);
-        setLayout(fl);
+        JButton importBtn = new JButton();
+        importBtn.setIcon(createIcon("/Import16.gif"));
+        JButton saveBtn = new JButton();
+        saveBtn.setIcon(createIcon("/Save16.gif"));
 
-        JButton helloBtn = new JButton("Hello");
-        JButton byeBtn = new JButton("Goodbye");
+        importBtn.setToolTipText("Import");
+        saveBtn.setToolTipText("Save");
 
-        ActionListener al = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JButton clickedButton = (JButton) e.getSource();
-                if (clickedButton == helloBtn) {
-                    if (stringListener != null) {
-                        StringEvent se = new StringEvent(this, "Hello\n");
-                        stringListener.textEmitted(se);
-                    }
-                } else if (clickedButton == byeBtn) {
-                    if (stringListener != null) {
-                        StringEvent se = new StringEvent(this, "Goodbye\n");
-                        stringListener.textEmitted(se);
-                    }
-                }
-            }
-        };
-        helloBtn.addActionListener(al);
-        byeBtn.addActionListener(al);
-        add(helloBtn);
-        add(byeBtn);
+        add(importBtn);
+        add(saveBtn);
+        setFloatable(false); //para que non se poida mover
     }
 
     public void setStringListener(StringListener stringListener) {
         this.stringListener = stringListener;
+    }
+
+    private ImageIcon createIcon(String path) {
+        URL url = getClass().getResource(path);
+        if (url == null) {
+            System.err.println("Unable to load image: " + path);
+        }
+        ImageIcon icon = new ImageIcon(url);
+        return icon;
     }
 
 }

@@ -10,8 +10,8 @@ import java.util.EventListener;
  *
  * @author a22dianart
  */
-public class PersonTableListener extends EventListener {
+public interface PersonTableListener extends EventListener {
 
-    public void textEmitted(PersonTableEvent e);
+    public void rowDeleted(int row);
 
 }

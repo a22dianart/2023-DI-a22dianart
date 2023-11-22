@@ -31,6 +31,8 @@ public class MainFrame extends JFrame {
     private Controller controller;
     private TablePanel tablePanel;
 
+    private JSplitPane jsp;
+
     public MainFrame() {
 
         super("Aplicación");
@@ -40,19 +42,18 @@ public class MainFrame extends JFrame {
         this.controller = new Controller();
         tablePanel = new TablePanel();
 
-        tablePanel.setData(controller.getPeople());
+        tablePanel.setData(controller.getPeople()); //para que esté enlazado o da base de datos e o da
         formPanel = new FormPanel(); //antes que o menu bar
         ToolBar toolbar = new ToolBar();
 
         setJMenuBar(createMenuBar()); //O MENU BAR
 
-        toolbar.setStringListener(new StringListener() {
-            @Override
-            public void textEmitted(StringEvent se) {
-                //textPanel.appendText(se.getText());
-            }
-        });
-
+//        toolbar.setStringListener(new StringListener() {
+//            @Override
+//            public void textEmitted(StringEvent se) {
+//                //textPanel.appendText(se.getText());
+//            }
+//        });
         formPanel.setFormListener(new FormListener() {
             @Override
             public void textEmitted(FormEvent e) {
@@ -72,13 +73,18 @@ public class MainFrame extends JFrame {
             }
         });
 
-        add(tablePanel, BorderLayout.CENTER);
+        tablePanel.setPersonTableListener(new PersonTableListener() {
+            public void rowDeleted(int row) {
+                controller.removePerson(row);
+            }
+        });
+
+        jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, formPanel, tablePanel);
+        add(jsp, BorderLayout.CENTER);
 
         add(toolbar, BorderLayout.NORTH);
 
         add(aceptarButton, BorderLayout.PAGE_END);
-
-        add(formPanel, BorderLayout.LINE_START);
 
         setSize(
                 1000, 500);

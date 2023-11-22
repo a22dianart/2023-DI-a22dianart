@@ -23,6 +23,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.Border;
@@ -241,6 +242,7 @@ public class FormPanel extends JPanel {
         gbc.gridy = 8;
 
         add(okBtn, gbc);
+
     }
 
     public void setFormListener(FormListener formListener) {

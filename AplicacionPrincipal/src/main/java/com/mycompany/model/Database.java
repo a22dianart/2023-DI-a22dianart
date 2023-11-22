@@ -64,4 +64,9 @@ public class Database {
         fis.close();
     }
 
+    public void removePerson(int index) {
+        people.remove(index);
+
+    }
+
 }

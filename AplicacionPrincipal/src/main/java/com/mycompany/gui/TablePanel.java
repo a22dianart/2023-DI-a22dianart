@@ -6,6 +6,8 @@ package com.mycompany.gui;
 
 import com.mycompany.model.Person;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -24,6 +26,7 @@ public class TablePanel extends JPanel {
 
     private JTable table;
     private PersonTableModel personTableModel;
+    private PersonTableListener personTableListener;
 
     public TablePanel() {
         personTableModel = new PersonTableModel();
@@ -31,19 +34,19 @@ public class TablePanel extends JPanel {
         JMenuItem removeItem = new JMenuItem("Borrar fila");
 
         popup.add(removeItem);
+        this.table = new JTable(personTableModel);
 
         removeItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                int row = … // engadir o código para obter a fila seleccionada
+                int row = table.getSelectedRow();// engadir o código para obter a fila seleccionada
+
                 if (personTableListener != null) {
                     personTableListener.rowDeleted(row);
-// para que visualmente se actualicen os datos
                     personTableModel.fireTableRowsDeleted(row, row);
                 }
             }
         });
 
-        JTable table = new JTable(personTableModel);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
@@ -85,7 +88,8 @@ public class TablePanel extends JPanel {
         personTableModel.fireTableDataChanged();
     }
 
-    public void setPersonTableListener() {
+    public void setPersonTableListener(PersonTableListener personTableListener) {
+        this.personTableListener = personTableListener;
 
     }
 }

@@ -112,4 +112,9 @@ public class Controller {
     public void loadFromFile(File file) throws IOException {
         db.loadFromFile(file);
     }
+
+    public void removePerson(int index) { //elimina da nosa bd a persoa borrada da taboa
+        db.removePerson(index);
+
+    }
 }
