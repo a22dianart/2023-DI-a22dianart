@@ -18,7 +18,8 @@ import javax.swing.JToolBar;
  */
 public class ToolBar extends JToolBar {
 
-    private StringListener stringListener;
+    private ImportListener importListener;
+    private SaveListener saveListener;
 
     public ToolBar() {
 
@@ -30,13 +31,36 @@ public class ToolBar extends JToolBar {
         importBtn.setToolTipText("Import");
         saveBtn.setToolTipText("Save");
 
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JButton clickedButton = (JButton) e.getSource();
+                if (clickedButton == importBtn) {
+                    if (importListener != null) {
+                        importListener.importOption();
+
+                    }
+                } else if (clickedButton == saveBtn) {
+                    if (saveListener != null) {
+                        saveListener.saveOption();
+                    }
+                }
+
+            }
+        };
+        importBtn.addActionListener(al);
+        saveBtn.addActionListener(al);
         add(importBtn);
         add(saveBtn);
         setFloatable(false); //para que non se poida mover
     }
 
-    public void setStringListener(StringListener stringListener) {
-        this.stringListener = stringListener;
+    public void setImportListener(ImportListener importListener) {
+        this.importListener = importListener;
+    }
+
+    public void setSaveListener(SaveListener saveListener) {
+        this.saveListener = saveListener;
     }
 
     private ImageIcon createIcon(String path) {

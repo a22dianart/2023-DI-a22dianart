@@ -45,6 +45,52 @@ public class MainFrame extends JFrame {
         tablePanel.setData(controller.getPeople()); //para que esté enlazado o da base de datos e o da
         formPanel = new FormPanel(); //antes que o menu bar
         ToolBar toolbar = new ToolBar();
+        JFrame jf = this;
+        toolbar.setImportListener(new ImportListener() {
+            @Override
+            public void importOption() {
+                JFileChooser fc = new JFileChooser();
+                fc.addChoosableFileFilter(new PersonFileFilter());
+                int returnVal = fc.showOpenDialog(jf);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        controller.loadFromFile(fc.getSelectedFile());
+                        tablePanel.refresh();
+                    } catch (IOException io) {
+                        JOptionPane.showMessageDialog(jf, "Erro intentando importar o arquivo", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                    System.out.println(fc.getSelectedFile());
+                } else {
+                    System.out.println("Open command cancelled by user.");
+                }
+
+            }
+
+        });
+        toolbar.setSaveListener(new SaveListener() {
+            @Override
+            public void saveOption() {
+                JFileChooser fc = new JFileChooser();
+                fc.addChoosableFileFilter(new PersonFileFilter());
+                int returnVal = fc.showSaveDialog(jf);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+                    try {
+                        controller.saveToFile(fc.getSelectedFile());
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(jf, "Erro intentando gardar o arquivo", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                    System.out.println(fc.getSelectedFile());
+
+                } else {
+                    System.out.println("Open command cancelled by user.");
+                }
+
+            }
+
+        });
 
         setJMenuBar(createMenuBar()); //O MENU BAR
 
@@ -191,8 +237,10 @@ public class MainFrame extends JFrame {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     formPanel.setVisible(true);
+                    jsp.setDividerLocation(250);
                 } else if (e.getStateChange() == ItemEvent.DESELECTED) {
                     formPanel.setVisible(false);
+
                 }
             }
         });
