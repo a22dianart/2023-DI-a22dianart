@@ -4,6 +4,7 @@
  */
 package com.mycompany.gui;
 
+import com.mycompany.model.EmploymentCategory;
 import com.mycompany.model.Person;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -35,6 +36,11 @@ public class TablePanel extends JPanel {
 
         popup.add(removeItem);
         this.table = new JTable(personTableModel);
+
+        table.setDefaultRenderer(EmploymentCategory.class,
+                new EmploymentCategoryRenderer());
+
+        table.setRowHeight(30);
 
         removeItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {

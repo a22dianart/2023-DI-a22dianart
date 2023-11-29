@@ -4,6 +4,7 @@
  */
 package com.mycompany.gui;
 
+import com.mycompany.model.EmploymentCategory;
 import com.mycompany.model.Person;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -73,6 +74,39 @@ public class PersonTableModel extends AbstractTableModel {
         } else {
             return columnNames[column];
         }
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int column) {
+        return column == 1 || column == 5 || column == 4;
+    }
+
+    @Override
+    public void setValueAt(Object avalue, int row, int column) {
+        Person person = personList.get(row);
+        switch (column) {
+            case 1 ->
+                person.setName((String) avalue);
+            case 5 ->
+                person.setUsCitizen((boolean) avalue);
+            case 4 ->
+                person.setEmpCat((EmploymentCategory) avalue);
+            default -> {
+            }
+        }
+
+    }
+
+    @Override
+    public Class<?> getColumnClass(int columnIndex) {
+        return switch (columnIndex) {
+            case 5 ->
+                Boolean.class;
+            case 4 ->
+                EmploymentCategory.class;
+            default ->
+                String.class;
+        };
     }
 
     public void removePerson(int row) {
