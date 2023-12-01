@@ -40,6 +40,9 @@ public class TablePanel extends JPanel {
         table.setDefaultRenderer(EmploymentCategory.class,
                 new EmploymentCategoryRenderer());
 
+        table.setDefaultEditor(EmploymentCategory.class,
+                new EmploymentCategoryEditor());
+
         table.setRowHeight(30);
 
         removeItem.addActionListener(new ActionListener() {
