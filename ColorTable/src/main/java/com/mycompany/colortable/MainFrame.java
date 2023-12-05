@@ -4,10 +4,30 @@
  */
 package com.mycompany.colortable;
 
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+
 /**
  *
  * @author a22dianart
  */
-public class MainFrame {
+public class MainFrame extends JFrame {
+
+    public MainFrame() {
+        super("Cores");
+        setLayout(new BorderLayout());
+
+        TablePanel table = new TablePanel();
+        add(table, BorderLayout.CENTER);
+
+        setSize(
+                1000, 500);
+
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        setVisible(true);
+
+    }
 
 }
