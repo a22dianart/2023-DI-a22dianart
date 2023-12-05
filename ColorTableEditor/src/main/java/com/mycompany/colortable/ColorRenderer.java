@@ -7,6 +7,7 @@ package com.mycompany.colortable;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -17,30 +18,19 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author a22dianart
  */
-public class ColorRenderer extends JLabel
+public class ColorRenderer extends JButton
         implements TableCellRenderer {
-
-    public ColorRenderer() {
-        super();
-    }
 
     public Component getTableCellRendererComponent(
             JTable table, Object color,
             boolean isSelected, boolean hasFocus,
             int row, int column) {
         Color newColor = (Color) color;
-        System.out.println(newColor);
-        setText("RGB value: " + newColor.getRed() + ", "
-                + newColor.getGreen() + ", "
-                + newColor.getBlue());
 
-        setOpaque(true);
-        setBackground(newColor);
-        setForeground(Color.WHITE);
-        if (newColor == Color.yellow) {
-            setForeground(Color.BLACK);
-        }
+        JButton boton = new JButton(color.toString());
+        boton.setOpaque(true);
+        boton.setBackground(newColor);
 
-        return this;
+        return boton;
     }
 }
