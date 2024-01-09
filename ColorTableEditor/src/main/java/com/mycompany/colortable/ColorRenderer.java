@@ -33,4 +33,5 @@ public class ColorRenderer extends JButton
 
         return boton;
     }
+
 }
