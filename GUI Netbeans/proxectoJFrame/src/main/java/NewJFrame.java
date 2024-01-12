@@ -25,28 +25,20 @@ public class NewJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        imaxeFondo1 = new com.mycompany.jpanelimage.ImaxeFondo();
-        imaxeFondo2 = new com.mycompany.jpanelimage.ImaxeFondo();
-        imaxeFondo3 = new com.mycompany.jpanelimage.ImaxeFondo();
-        jButtonPersonalizado1 = new com.mycompany.jpanelimage.JButtonPersonalizado();
-        jPanelImage1 = new com.mycompany.jpanelimage.JPanelImage();
+        jPanelImage2 = new com.mycompany.jpanelimage.JPanelImage();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButtonPersonalizado1.setText("jButtonPersonalizado1");
-        jButtonPersonalizado1.setCorFondo(java.awt.Color.white);
-        jButtonPersonalizado1.setCorTexto(java.awt.Color.green);
+        jPanelImage2.setImaxeFondo(new com.mycompany.jpanelimage.ImaxeFondo(new java.io.File("/home/sanclemente.local/a22dianart/Escritorio/download.jpeg"), 0.01f));
 
-        jPanelImage1.setImaxeFondo(new com.mycompany.jpanelimage.ImaxeFondo(new java.io.File("/home/sanclemente.local/a22dianart/Escritorio/download.jpeg"), 0.01f));
-
-        javax.swing.GroupLayout jPanelImage1Layout = new javax.swing.GroupLayout(jPanelImage1);
-        jPanelImage1.setLayout(jPanelImage1Layout);
-        jPanelImage1Layout.setHorizontalGroup(
-            jPanelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelImage2Layout = new javax.swing.GroupLayout(jPanelImage2);
+        jPanelImage2.setLayout(jPanelImage2Layout);
+        jPanelImage2Layout.setHorizontalGroup(
+            jPanelImage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
-        jPanelImage1Layout.setVerticalGroup(
-            jPanelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelImage2Layout.setVerticalGroup(
+            jPanelImage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
@@ -54,24 +46,17 @@ public class NewJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jButtonPersonalizado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(224, 224, 224)
-                        .addComponent(jPanelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(369, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(208, Short.MAX_VALUE)
+                .addComponent(jPanelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
-                .addComponent(jPanelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(jButtonPersonalizado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(117, Short.MAX_VALUE)
+                .addComponent(jPanelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83))
         );
 
         pack();
@@ -113,10 +98,6 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.mycompany.jpanelimage.ImaxeFondo imaxeFondo1;
-    private com.mycompany.jpanelimage.ImaxeFondo imaxeFondo2;
-    private com.mycompany.jpanelimage.ImaxeFondo imaxeFondo3;
-    private com.mycompany.jpanelimage.JButtonPersonalizado jButtonPersonalizado1;
-    private com.mycompany.jpanelimage.JPanelImage jPanelImage1;
+    private com.mycompany.jpanelimage.JPanelImage jPanelImage2;
     // End of variables declaration//GEN-END:variables
 }

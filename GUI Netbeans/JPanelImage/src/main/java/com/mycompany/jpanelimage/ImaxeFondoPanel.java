@@ -23,7 +23,7 @@ public class ImaxeFondoPanel extends javax.swing.JPanel {
     public ImaxeFondo getSelectedValue() {
         File file = new File(imaxeTxt.getText());
 // Engádese o f para converter o enteiro a float
-        Float opacidade = opacidadeSlider.getValue() / 100f;
+        Float opacidade = 1f; //opacidadeSlider.getValue() / 100f;
         return new ImaxeFondo(file, opacidade);
     }
 
@@ -60,7 +60,7 @@ public class ImaxeFondoPanel extends javax.swing.JPanel {
 
         opacidadeLbl.setText("Opacidade:");
 
-        opacidadeSlider.setMaximum(1);
+        opacidadeSlider.setValue(50);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
