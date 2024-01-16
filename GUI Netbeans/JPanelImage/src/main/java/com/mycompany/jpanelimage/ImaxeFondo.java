@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class ImaxeFondo implements Serializable {
 
     private File ficheiroImaxe;
-    private float opacidade;
+    private Float opacidade;
 
     public ImaxeFondo() {
     }

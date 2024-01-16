@@ -26,37 +26,47 @@ public class NewJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelImage2 = new com.mycompany.jpanelimage.JPanelImage();
+        botonPersonalizado1 = new com.mycompany.exercicio2.BotonPersonalizado();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanelImage2.setImaxeFondo(new com.mycompany.jpanelimage.ImaxeFondo(new java.io.File("/home/sanclemente.local/a22dianart/Escritorio/download.jpeg"), 0.01f));
+        jPanelImage2.setImaxeFondo(new com.mycompany.jpanelimage.ImaxeFondo(new java.io.File("/home/sanclemente.local/a22dianart/Escritorio/download.jpeg"), 0.31f));
 
         javax.swing.GroupLayout jPanelImage2Layout = new javax.swing.GroupLayout(jPanelImage2);
         jPanelImage2.setLayout(jPanelImage2Layout);
         jPanelImage2Layout.setHorizontalGroup(
             jPanelImage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 201, Short.MAX_VALUE)
         );
         jPanelImage2Layout.setVerticalGroup(
             jPanelImage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 153, Short.MAX_VALUE)
         );
+
+        botonPersonalizado1.setCor(new com.mycompany.exercicio2.Cor(null,null));
+        botonPersonalizado1.setText("botonPersonalizado1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(208, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addComponent(jPanelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92))
+                .addContainerGap(168, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonPersonalizado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(117, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addComponent(jPanelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(botonPersonalizado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
 
         pack();
@@ -98,6 +108,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.mycompany.exercicio2.BotonPersonalizado botonPersonalizado1;
     private com.mycompany.jpanelimage.JPanelImage jPanelImage2;
     // End of variables declaration//GEN-END:variables
 }

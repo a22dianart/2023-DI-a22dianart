@@ -80,9 +80,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSlider" name="opacidadeSlider">
-      <Properties>
-        <Property name="value" type="int" value="50"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>
