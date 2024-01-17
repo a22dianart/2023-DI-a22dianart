@@ -20,7 +20,8 @@ public class BotonPersonalizado extends JButton implements Serializable {
 
     public void setCor(Cor cor) {
         this.cor = cor;
-        repaint();
+        this.setBackground(this.cor.getCorFondo());
+        this.setForeground(this.cor.getCorTexto());
     }
 
     public Cor getCor() {

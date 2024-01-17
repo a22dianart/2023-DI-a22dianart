@@ -25,8 +25,53 @@ public class CorPanel extends javax.swing.JPanel {
     }
 
     public Cor getSelectedValue() {
-        Color colorTexto = Color.getColor(textoField.getText());
-        Color colorFondo = Color.getColor(fondoField.getText());
+        String textoColor = textoField.getText();
+        String fondoColor = fondoField.getText();
+
+        int textoColorRed;
+        int textoColorGreen;
+        int textoColorBlue;
+
+        int fondoColorRed;
+        int fondoColorGreen;
+        int fondoColorBlue;
+        //---------------------------------------------------------------------------------------------
+
+        if (textoColor.length() != 0) {
+            int textoColorFirstIndex = textoColor.indexOf(",");
+            int textoColorMediumIndex = textoColor.lastIndexOf(",");
+            int textoColorLastIndex = textoColor.lastIndexOf("]");
+
+            textoColorRed = Integer.parseInt(textoColor.substring(1, textoColorFirstIndex));
+            textoColorGreen = Integer.parseInt(textoColor.substring(textoColorFirstIndex + 1, textoColorMediumIndex));
+            textoColorBlue = Integer.parseInt(textoColor.substring(textoColorMediumIndex + 1, textoColorLastIndex));
+
+        } else {
+            textoColorRed = 0;
+            textoColorGreen = 0;
+            textoColorBlue = 0;
+
+        }
+
+        //--------------------------------------------------------------------------------------------
+        if (fondoColor.length() != 0) {
+            int fondoColorFirstIndex = fondoColor.indexOf(",");
+            int fondoColorMediumIndex = fondoColor.lastIndexOf(",");
+            int fondoColorLastIndex = fondoColor.lastIndexOf("]");
+
+            fondoColorRed = Integer.parseInt(fondoColor.substring(1, fondoColorFirstIndex));
+            fondoColorGreen = Integer.parseInt(fondoColor.substring(fondoColorFirstIndex + 1, fondoColorMediumIndex));
+            fondoColorBlue = Integer.parseInt(fondoColor.substring(fondoColorMediumIndex + 1, fondoColorLastIndex));
+
+        } else {
+            fondoColorRed = 255;
+            fondoColorGreen = 255;
+            fondoColorBlue = 255;
+        }
+
+        //-----------------------------------------------------------------------------------------
+        Color colorTexto = new Color(textoColorRed, textoColorGreen, textoColorBlue);
+        Color colorFondo = new Color(fondoColorRed, fondoColorGreen, fondoColorBlue);
         return new Cor(colorFondo, colorTexto);
     }
 
@@ -121,7 +166,15 @@ public class CorPanel extends javax.swing.JPanel {
         int resultado = JOptionPane.showConfirmDialog(null, colorChooser, "Selecciona un color", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (resultado == JOptionPane.OK_OPTION) {
             Color color = colorChooser.getColor();
-            textoField.setText(color.toString());
+            StringBuilder sb = new StringBuilder();
+            sb.append("[");
+            sb.append(color.getRed());
+            sb.append(",");
+            sb.append(color.getGreen());
+            sb.append(",");
+            sb.append(color.getBlue());
+            sb.append("]");
+            textoField.setText(sb.toString());
         }
     }//GEN-LAST:event_selectTextBtnActionPerformed
 
@@ -130,7 +183,15 @@ public class CorPanel extends javax.swing.JPanel {
         int resultado = JOptionPane.showConfirmDialog(null, colorChooser, "Selecciona un color", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (resultado == JOptionPane.OK_OPTION) {
             Color color = colorChooser.getColor();
-            fondoField.setText(color.toString());
+            StringBuilder sb = new StringBuilder();
+            sb.append("[");
+            sb.append(color.getRed());
+            sb.append(",");
+            sb.append(color.getGreen());
+            sb.append(",");
+            sb.append(color.getBlue());
+            sb.append("]");
+            fondoField.setText(sb.toString());
         }
     }//GEN-LAST:event_selectFondoBtnActionPerformed
 

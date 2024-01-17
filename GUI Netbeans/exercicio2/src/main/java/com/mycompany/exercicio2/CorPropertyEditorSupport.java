@@ -33,7 +33,9 @@ public class CorPropertyEditorSupport extends PropertyEditorSupport {
     @Override
     public String getJavaInitializationString() {
         Cor cor = corPanel.getSelectedValue();
-        return "new com.mycompany.exercicio2.Cor(" + cor.getCorFondo() + "," + cor.getCorTexto() + ")";
+        return "new com.mycompany.exercicio2.Cor(new java.awt.Color(" + cor.getCorFondo().getRGB() + "), new java.awt.Color(" + cor.getCorTexto().getRGB() + "))";
+        //return  new com.mycompany.exercicio2.Cor(new java.awt.Color(), new java.awt.Color())
     }
 
 }
+-

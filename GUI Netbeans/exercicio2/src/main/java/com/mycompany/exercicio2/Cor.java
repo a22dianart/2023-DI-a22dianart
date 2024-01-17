@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author a22dianart
  */
-class Cor implements Serializable {
+public class Cor implements Serializable {
 
     private Color corFondo;
     private Color corTexto;
