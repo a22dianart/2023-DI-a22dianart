@@ -6,6 +6,9 @@ package com.mycompany.jpanelimage;
 import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.Serializable;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -17,8 +20,31 @@ import javax.swing.JPanel;
 public class JPanelImage extends JPanel implements Serializable {
 
     private ImaxeFondo imaxeFondo;
+    private ArrastreListener arrastreListener;
+    private boolean ratonPresionado = false;
+    private Point puntoPresion;
 
     public JPanelImage() {
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (ratonPresionado) {
+                    Point posicionActual = e.getPoint();
+                    if (Math.abs(puntoPresion.x - posicionActual.x) >= 50) {
+                        if (arrastreListener != null) {
+                            arrastreListener.arrastre();
+                        }
+                    }
+                }
+                ratonPresionado = false;
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                ratonPresionado = true;
+                puntoPresion = e.getPoint();
+            }
+        });
     }
 
     public ImaxeFondo getImaxeFondo() {
@@ -29,6 +55,14 @@ public class JPanelImage extends JPanel implements Serializable {
         this.imaxeFondo = imaxeFondo;
 
         repaint();
+    }
+
+    public void addArrastreListener(ArrastreListener arrastreListener) {
+        this.arrastreListener = arrastreListener;
+    }
+
+    public void removeArrastreListener() {
+        this.arrastreListener = null;
     }
 
     @Override

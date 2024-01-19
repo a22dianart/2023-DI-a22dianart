@@ -2,6 +2,7 @@ package com.mycompany.exercicio3;
 
 import java.io.Serializable;
 import javax.swing.JButton;
+import javax.swing.UIManager;
 
 /**
  *
@@ -13,6 +14,17 @@ public class BotonPersonalizado extends JButton implements Serializable {
     private Cor corHover; //nova propiedade
 
     public BotonPersonalizado() {
+        this.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                setBackground(corHover.getCorFondo());
+                setForeground(corHover.getCorTexto());
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                setBackground(cor.getCorFondo());
+                setForeground(cor.getCorTexto());
+            }
+        });
     }
 
     public void setCor(Cor cor) {
@@ -30,6 +42,11 @@ public class BotonPersonalizado extends JButton implements Serializable {
     }
 
     public void setCorHover(Cor corHover) {
+        this.corHover = corHover;
+    }
+
+    public BotonPersonalizado(Cor cor, Cor corHover) {
+        this.cor = cor;
         this.corHover = corHover;
     }
 
