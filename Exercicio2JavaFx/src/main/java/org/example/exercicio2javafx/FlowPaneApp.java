@@ -13,6 +13,7 @@ public class FlowPaneApp extends Application {
     public void start(Stage stage) throws IOException {
         stage.setTitle("FlowPane");
         FlowPane flowPane = new FlowPane();
+        flowPane.setHgap(10d);
         for (int i = 0; i < 21; i++) {
             Button b1 = new Button(String.valueOf(i));
             flowPane.getChildren().add(b1);

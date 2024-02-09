@@ -1,27 +1,26 @@
 package org.example.exercicio2javafx;
 
 import javafx.application.Application;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HBoxApp extends Application {
+public class AnchorPaneApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        stage.setTitle("HBox");
+        stage.setTitle("AnchorPane");
+        AnchorPane anchorPane = new AnchorPane();
+        Button b1 = new Button(String.valueOf("BOTON"));
+        AnchorPane.setBottomAnchor(b1, 10d);
+        AnchorPane.setRightAnchor(b1,10d);
+        anchorPane.getChildren().add(b1);
 
-        Button button1 = new Button("1");
-        Button button2 = new Button("2");
 
-        HBox hbox = new HBox(button1, button2);
-
-        hbox.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(hbox, 200, 100);
+        Scene scene = new Scene(anchorPane, 200, 250);
         stage.setScene(scene);
         stage.show();
     }
