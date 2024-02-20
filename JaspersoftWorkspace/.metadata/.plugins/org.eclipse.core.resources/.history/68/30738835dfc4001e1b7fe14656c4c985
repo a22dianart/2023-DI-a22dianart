@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.0.final using JasperReports Library version 6.21.0-4f56c4f36cd19e17675219a9ac4692d5f0f13b06  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informePrincipalPedidos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d7b57bae-49ff-4d2c-9d92-69d21612fa73">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="clientes.jrdax"/>
+	<parameter name="employeeId" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT ORDERID, CUSTOMERID, EMPLOYEEID, ORDERDATE, SHIPPERID
+FROM ORDERS 
+WHERE SHIPPERID= $P{employeeId}]]>
+	</queryString>
+	<field name="ORDERID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="ORDERID"/>
+		<property name="com.jaspersoft.studio.field.label" value="ORDERID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ORDERS"/>
+	</field>
+	<field name="CUSTOMERID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="CUSTOMERID"/>
+		<property name="com.jaspersoft.studio.field.label" value="CUSTOMERID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ORDERS"/>
+	</field>
+	<field name="EMPLOYEEID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="EMPLOYEEID"/>
+		<property name="com.jaspersoft.studio.field.label" value="EMPLOYEEID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ORDERS"/>
+	</field>
+	<field name="ORDERDATE" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="ORDERDATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="ORDERDATE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ORDERS"/>
+	</field>
+	<field name="SHIPPERID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="SHIPPERID"/>
+		<property name="com.jaspersoft.studio.field.label" value="SHIPPERID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ORDERS"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="43" splitType="Stretch">
+			<textField>
+				<reportElement x="44" y="13" width="100" height="30" uuid="83c8f029-8734-4170-96c5-94f36f2dda04"/>
+				<textFieldExpression><![CDATA[$F{ORDERID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="65" y="0" width="100" height="30" uuid="08e21c21-7dd2-4dca-90c6-de3d520ce8e3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="28a26df7-48a4-4816-9dfd-a3d9cf2c188e"/>
+				</reportElement>
+				<text><![CDATA[CUSTOMERID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="205" y="0" width="100" height="30" uuid="824d0d9b-98d2-43c8-bb72-b08011a13c06">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b8a4f45a-79f1-4cbc-8224-6047fd961452"/>
+				</reportElement>
+				<text><![CDATA[ORDERDATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="321" y="0" width="100" height="30" uuid="ad03cc24-c9d4-4d8b-9995-2658186b8d85">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c2912269-eb7e-411c-93ec-359f8a9ce60a"/>
+				</reportElement>
+				<text><![CDATA[SHIPPERID]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="65" y="56" width="100" height="30" uuid="a2ecce22-d89c-482e-9ed3-0b43cb8b837c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="28a26df7-48a4-4816-9dfd-a3d9cf2c188e"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{CUSTOMERID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="60" width="100" height="30" uuid="a62f2372-f7f5-4b36-b53e-f4a740fd6671">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b8a4f45a-79f1-4cbc-8224-6047fd961452"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{ORDERDATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="321" y="55" width="100" height="30" uuid="cebb5054-524b-4122-96d5-a2fe66a3dc72">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c2912269-eb7e-411c-93ec-359f8a9ce60a"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{SHIPPERID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

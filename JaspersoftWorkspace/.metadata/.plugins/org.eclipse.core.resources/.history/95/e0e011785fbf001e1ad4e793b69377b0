@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl">
+  <name>informes</name>
+  <driver>org.h2.Driver</driver>
+  <username></username>
+  <password></password>
+  <url>jdbc:h2:file:/home/sanclemente.local/a22dianart/Escritorio/northWind</url>
+  <database></database>
+  <savePassword>true</savePassword>
+  <serverAddress></serverAddress>
+</jdbcDataAdapter>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.0.final using JasperReports Library version 6.21.0-4f56c4f36cd19e17675219a9ac4692d5f0f13b06  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="suppliers" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2907d23a-820b-4107-945f-4e548a6716ed">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="clientes.jrdax"/>
+	<queryString language="SQL">
+		<![CDATA[select * from SUPPLIERS ORDER BY COUNTRY]]>
+	</queryString>
+	<field name="SUPPLIERID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="SUPPLIERID"/>
+		<property name="com.jaspersoft.studio.field.label" value="SUPPLIERID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="SUPPLIERS"/>
+	</field>
+	<field name="SUPPLIERNAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="SUPPLIERNAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="SUPPLIERNAME"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="SUPPLIERS"/>
+	</field>
+	<field name="CONTACTNAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CONTACTNAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="CONTACTNAME"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="SUPPLIERS"/>
+	</field>
+	<field name="ADDRESS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ADDRESS"/>
+		<property name="com.jaspersoft.studio.field.label" value="ADDRESS"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="SUPPLIERS"/>
+	</field>
+	<field name="CITY" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CITY"/>
+		<property name="com.jaspersoft.studio.field.label" value="CITY"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="SUPPLIERS"/>
+	</field>
+	<field name="POSTALCODE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="POSTALCODE"/>
+		<property name="com.jaspersoft.studio.field.label" value="POSTALCODE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="SUPPLIERS"/>
+	</field>
+	<field name="COUNTRY" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="COUNTRY"/>
+		<property name="com.jaspersoft.studio.field.label" value="COUNTRY"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="SUPPLIERS"/>
+	</field>
+	<field name="PHONE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="PHONE"/>
+		<property name="com.jaspersoft.studio.field.label" value="PHONE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="SUPPLIERS"/>
+	</field>
+	<variable name="NUMSUPPLIERS" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{SUPPLIERID}]]></variableExpression>
+	</variable>
+	<variable name="COUNTRY1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{COUNTRY}]]></variableExpression>
+	</variable>
+	<variable name="SUPPLIERID1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{SUPPLIERID}]]></variableExpression>
+	</variable>
+	<variable name="SUPPLIERID3" class="java.lang.Integer" resetType="Group" resetGroup="grupoPais" calculation="Count">
+		<variableExpression><![CDATA[$F{SUPPLIERID}]]></variableExpression>
+	</variable>
+	<group name="SUPPLIERID">
+		<groupExpression><![CDATA[$F{SUPPLIERID}]]></groupExpression>
+	</group>
+	<group name="SUPPLIERNAME">
+		<groupExpression><![CDATA[$F{SUPPLIERNAME}]]></groupExpression>
+	</group>
+	<group name="CONTACTNAME">
+		<groupExpression><![CDATA[$F{CONTACTNAME}]]></groupExpression>
+	</group>
+	<group name="ADDRESS">
+		<groupExpression><![CDATA[$F{ADDRESS}]]></groupExpression>
+	</group>
+	<group name="CITY">
+		<groupExpression><![CDATA[$F{CITY}]]></groupExpression>
+	</group>
+	<group name="POSTALCODE">
+		<groupExpression><![CDATA[$F{POSTALCODE}]]></groupExpression>
+	</group>
+	<group name="COUNTRY">
+		<groupExpression><![CDATA[$F{COUNTRY}]]></groupExpression>
+	</group>
+	<group name="PHONE">
+		<groupExpression><![CDATA[$F{PHONE}]]></groupExpression>
+	</group>
+	<group name="grupoPais">
+		<groupExpression><![CDATA[$F{COUNTRY}]]></groupExpression>
+		<groupHeader>
+			<band height="50"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="50">
+				<textField>
+					<reportElement x="49" y="15" width="100" height="30" uuid="b8182424-2df8-4863-97e1-27b7426ebc4d"/>
+					<textFieldExpression><![CDATA[$V{SUPPLIERID3}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="30" width="100" height="30" uuid="7eb187e9-90b4-45ad-b961-1f67e05f1220"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[SUPPLIERS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="25" y="0" width="100" height="30" uuid="6658b8c9-e592-4f1f-8591-0dc516a4abcb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0939d4d9-aa2e-4ea0-813e-035654e0e13c"/>
+				</reportElement>
+				<text><![CDATA[SUPPLIERNAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="183" y="0" width="100" height="30" uuid="c2afb135-0711-417a-8500-1edbfdaa6ecf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e3064009-b5d5-4cf1-b073-b374540c5a48"/>
+				</reportElement>
+				<text><![CDATA[COUNTRY]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="95" splitType="Stretch">
+			<textField>
+				<reportElement x="25" y="34" width="100" height="30" uuid="0df027ad-7157-4e0a-b8a8-c9006a47905e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0939d4d9-aa2e-4ea0-813e-035654e0e13c"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{SUPPLIERNAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="183" y="39" width="100" height="30" uuid="f7ecb5ce-b1c3-4b26-8123-d5099ca6e523">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e3064009-b5d5-4cf1-b073-b374540c5a48"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{COUNTRY}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="310" splitType="Stretch">
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="-10" y="40" width="530" height="260" uuid="ddcdb0a8-cfbd-430c-a8d6-01ea901b26f8"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["SUBMINISTADORES POR PAÍS"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{COUNTRY}]]></categoryExpression>
+						<valueExpression><![CDATA[$V{COUNTRY1}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

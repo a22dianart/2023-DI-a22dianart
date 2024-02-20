@@ -51,14 +51,13 @@ public class LoginApp extends Application {
         texto.setAlignment(Pos.CENTER);
 
         HBox hboxLogin = new HBox(texto);
-        hbox.setAlignment(Pos.CENTER);
+        hboxLogin.setAlignment(Pos.CENTER);
 
 
 
 
         loginBtn.setOnAction(value ->  {
-            GridPane.setColumnSpan(hboxLogin,2 );
-            gridPane.add(hboxLogin, 0, 4);
+            gridPane.add(hboxLogin, 0, 4, 2, 1);
 
         });
 
@@ -66,11 +65,12 @@ public class LoginApp extends Application {
         gridPane.add(userLbl,0,1);
         gridPane.add(usertxt,1,1);
         gridPane.add(passLbl,0,2);
+        gridPane.add(passtxt,1,2);
 
 
 
-        GridPane.setColumnSpan(hbox,2 );
-        gridPane.add(hbox, 0, 3);
+        //GridPane.setColumnSpan(hbox,2 );
+        gridPane.add(hbox, 0, 3, 2, 1);
         gridPane.setGridLinesVisible(true);
 
 
